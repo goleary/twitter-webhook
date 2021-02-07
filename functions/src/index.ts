@@ -16,6 +16,8 @@ firebase.initializeApp();
 
 // const TWITTER_HANDLE = "g0leary";
 
+const SAVE_TRIGGER = "save to upnext";
+
 /**
  * Creates a HMAC SHA-256 hash created from the app TOKEN and
  * your app Consumer Secret.
@@ -105,11 +107,11 @@ export const webhook = functions.https.onRequest(async (request, response) => {
     // }
     if (tweet.in_reply_to_status_id_str === null) {
       logger.info("Couldn't find tweet replying to", payload);
-    } else if (text.toLowerCase().includes("save to upnext")) {
-      logger.info("tweet contains 'save to upnext'");
+    } else if (text.toLowerCase().includes(SAVE_TRIGGER)) {
+      logger.info(`tweet contains ${SAVE_TRIGGER}`);
       // find tweet it's responding to.
       const result = await twitterClient.tweets.statusesLookup({
-        tweet_mode: "expanded",
+        tweet_mode: "extended",
         id: tweet.in_reply_to_status_id_str,
       });
       const originalTweet = result[0];
