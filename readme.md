@@ -23,3 +23,10 @@ More details on the Twitter API endpoints can be found [here](https://developer.
 
 - In order to get full URLs return for a tweet you must provide `tweet_mode: extended` when fetching.
 - The twitter api return "entities.urls" for a tweet, so there is no need to extract/parse the urls from the status text.
+
+
+### TODOS
+
+-[ ] enable responding to tweets with a confirmation message
+-[ ] filter for only tweets with a mention.
+-[ ] lookup linked user account for twitter handle - if there is none dump into shared twitter collection.
